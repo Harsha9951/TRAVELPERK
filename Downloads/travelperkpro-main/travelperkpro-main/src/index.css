@@ -1,0 +1,115 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Design system — all tokens in HSL and semantic. */
+
+@layer base {
+  :root {
+    /* Surfaces */
+    --background: 60 20% 96%; /* warm canvas */
+    --foreground: 220 22% 14%;
+
+    --card: 0 0% 100%;
+    --card-foreground: 220 22% 14%;
+
+    --popover: 0 0% 100%;
+    --popover-foreground: 220 22% 14%;
+
+    /* Brand */
+    --primary: 86 84% 52%; /* lime accent */
+    --primary-foreground: 222 20% 10%;
+
+    --secondary: 210 40% 96%;
+    --secondary-foreground: 222 30% 12%;
+
+    --muted: 60 12% 90%;
+    --muted-foreground: 220 10% 40%;
+
+    --accent: 210 90% 56%; /* sky */
+    --accent-foreground: 210 40% 98%;
+
+    --destructive: 0 72% 50%;
+    --destructive-foreground: 210 40% 98%;
+
+    --border: 60 8% 85%;
+    --input: 60 8% 85%;
+    --ring: var(--primary);
+
+    --radius: 0.75rem;
+
+    /* Extras */
+    --brand-bg: 220 36% 8%;
+    --brand-cyan: 178 100% 50%;
+    --brand-purple: 285 100% 50%;
+    --gradient-primary: linear-gradient(135deg, hsl(var(--brand-cyan)), hsl(var(--brand-purple)));
+    --gradient-brand: linear-gradient(135deg, hsl(var(--brand-cyan)), hsl(var(--brand-purple)));
+    --shadow-elevated: 0 10px 30px -10px hsl(210 30% 20% / 0.2);
+    --shadow-glow: 0 0 40px hsl(var(--brand-cyan) / 0.35);
+  }
+
+  .dark {
+    --background: 222 84% 3%; /* Deep cyberpunk dark */
+    --foreground: 210 40% 98%;
+
+    --card: 222 84% 4%;
+    --card-foreground: 210 40% 98%;
+
+    --popover: 222 84% 4%;
+    --popover-foreground: 210 40% 98%;
+
+    --primary: 275 100% 65%; /* Bright purple */
+    --primary-foreground: 222 84% 3%;
+
+    --secondary: 222 47% 11%;
+    --secondary-foreground: 210 40% 98%;
+
+    --muted: 222 47% 11%;
+    --muted-foreground: 215 20% 65%;
+
+    --accent: 180 100% 50%; /* Bright cyan */
+    --accent-foreground: 222 84% 3%;
+
+    --destructive: 0 84% 60%;
+    --destructive-foreground: 210 40% 98%;
+
+    --border: 222 47% 15%;
+    --input: 222 47% 15%;
+    --ring: 180 100% 50%;
+
+    /* Enhanced cyberpunk colors */
+    --brand-bg: 222 84% 3%;
+    --brand-cyan: 180 100% 50%;
+    --brand-purple: 275 100% 65%;
+    --shadow-glow: 0 0 40px hsl(var(--brand-cyan) / 0.4);
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground antialiased;
+  }
+}
+
+/* Utilities tied to tokens */
+@layer utilities {
+  .bg-gradient-primary { background-image: var(--gradient-primary); }
+  .bg-gradient-brand { background-image: var(--gradient-brand); }
+  .bg-brand { background-color: hsl(var(--brand-bg)); }
+  .panel-glass { background-color: hsl(var(--card) / 0.06); border: 1px solid hsl(var(--border) / 0.3); backdrop-filter: blur(12px); }
+  .shadow-elevated { box-shadow: var(--shadow-elevated); }
+  .shadow-glow { box-shadow: var(--shadow-glow); }
+
+  /* Interactive utilities from our animation system */
+  .story-link { @apply relative inline-block after:content-[''] after:absolute after:w-full after:scale-x-0 after:h-0.5 after:bottom-0 after:left-0 after:bg-primary after:origin-bottom-right after:transition-transform after:duration-300 hover:after:scale-x-100 hover:after:origin-bottom-left; }
+  .hover-scale { @apply transition-transform duration-200 hover:scale-105; }
+  .pulse { @apply animate-[pulse_2s_cubic-bezier(0.4,0,0.6,1)_infinite]; }
+  
+  /* Testimonial swiper styling */
+  .testimonial-swiper .swiper-slide { @apply opacity-0; }
+  .testimonial-swiper .swiper-slide-active { @apply opacity-100; }
+}
